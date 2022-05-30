@@ -19,10 +19,7 @@ describe("Login Page", function () {
         })
        
         it("Should successfully log in user with correct email and password", async () => {
-            const { validEmailAndValidPassword: { email, password } } = data
-
-            await LoginPage.loginAndWait(email, password)
-            // assert.equal(await MyAccountPage.myAccountMenuItem.getText(), 'My Account')
+            await LoginPage.loginAndWait(data.validEmailAndValidPassword.email, data.validEmailAndValidPassword.password)
             await expect(await MyAccountPage.myAccountMenuItem.getText()).to.equal('My Account')
         })
     })
