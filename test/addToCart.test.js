@@ -1,20 +1,24 @@
-const loginData = require('../data/login.data')
 const CartPage = require('../pages/cart.page')
+const loginData = require('../data/login.data')
 const HomePage = require('../pages/home.page')
 const ItemPage = require('../pages/item.page')
 const LoginPage = require('../pages/login.page')
 const MyAccountPage = require('../pages/myAccount.page')
 
-describe('Add Item to Cart', function () {
-    beforeEach(async () => {
-        await HomePage.open()
-    })
-    
+describe('Add Item to Cart', function () {    
     describe('Unauthenticated User', function () {
+        beforeEach(async () => {
+            await HomePage.open()
+        })
+    
+        afterEach(async () => {
+            await browser.reloadSession()
+        })
+
         it('Should add one item to cart', async () => {
             await HomePage.selectItem(1)
             await ItemPage.addItemToCart(1)
-            assert.equal(await ItemPage.cart.getText(), 'Cart (1)')
+            assert.equal(await ItemPage.cartButton.getText(), 'Cart (1)')
         })
 
         it('Should add multiple items to cart', async () => {
@@ -23,7 +27,7 @@ describe('Add Item to Cart', function () {
             await ItemPage.navigateToHomePage()
             await HomePage.selectItem(2)
             await ItemPage.addItemToCart(2)
-            assert.equal(await ItemPage.cart.getText(), 'Cart (2)')
+            assert.equal(await ItemPage.cartButton.getText(), 'Cart (2)')
         })
 
         it('Should add same item to cart multiple times', async () => {
@@ -32,11 +36,19 @@ describe('Add Item to Cart', function () {
             await ItemPage.navigateToHomePage()
             await HomePage.selectItem(1)
             await ItemPage.addItemToCart(2)
-            assert.equal(await ItemPage.cart.getText(), 'Cart (2)')
+            assert.equal(await ItemPage.cartButton.getText(), 'Cart (2)')
         })
     })
    
     describe('Authenticated User', function () {
+        beforeEach(async () => {
+            await HomePage.open()
+        })
+    
+        afterEach(async () => {
+            await browser.reloadSession()
+        })
+
         it('Should have same product price on product page and cart page', async () => {
             let itemPagePrice = ''
             let cartPagePrice = ''

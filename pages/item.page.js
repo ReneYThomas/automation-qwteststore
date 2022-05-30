@@ -20,7 +20,7 @@ class ItemPage extends Page {
             async () => {
                 return (await this.cartButton.getText() === `Cart (${cartNumber})`)
             },
-            { timeout: 2000 }
+            { timeout: 3000 }
         )
     }
     

@@ -4,7 +4,7 @@
 */
 module.exports = class Page {
     get homeButton () { return $('.header.item') }
-    get cartButton () { return $('a[href*="/cart/"] > div') }
+    get cartButton () { return $('a[href*="/cart/"]') }
     get signInButton () { return $('a[href*="/login/"]') }
     get signOutButton () { return $('//a[text()="Sign out"]') }
 
