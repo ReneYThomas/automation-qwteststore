@@ -1,13 +1,19 @@
-const LoginPage = require("../pages/login.page")
 const data = require('../data/login.data')
+const HomePage = require('../pages/home.page')
+const LoginPage = require('../pages/login.page')
 const MyAccountPage = require("../pages/myAccount.page")
 
 describe("Login Page", function () {
-    beforeEach(async () => {
-        await LoginPage.open()
-    })
-    
     describe('Positive Login Tests', function () {
+        beforeEach(async () => {
+            await HomePage.open()
+            await HomePage.clickSignInButton()
+        })
+
+        afterEach(async () => {
+            await browser.reloadSession()
+        })
+
         it("Should enter email", async () => {
             await LoginPage.enterEmail(data.validEmailAndValidPassword.email)
             assert.equal(await LoginPage.emailInputField.getValue(), data.validEmailAndValidPassword.email)
@@ -19,15 +25,21 @@ describe("Login Page", function () {
         })
        
         it("Should successfully log in user with correct email and password", async () => {
-            const { validEmailAndValidPassword: { email, password } } = data
-
-            await LoginPage.loginAndWait(email, password)
-            // assert.equal(await MyAccountPage.myAccountMenuItem.getText(), 'My Account')
+            await LoginPage.loginAndWait(data.validEmailAndValidPassword.email, data.validEmailAndValidPassword.password)
             await expect(await MyAccountPage.myAccountMenuItem.getText()).to.equal('My Account')
         })
     })
    
     describe('Negative Login Tests', function () {
+        beforeEach(async () => {
+            await HomePage.open()
+            await HomePage.clickSignInButton()
+        })
+
+        afterEach(async () => {
+            await browser.reloadSession()
+        })
+
         it("Should display correct error message when valid email and invalid password is submitted", async () => {
             await LoginPage.login(data.validEmailAndInvalidPassword.email, data.validEmailAndInvalidPassword.password)
             assert.equal(await LoginPage.errorMessage.getText(), data.errorMessages.validEmailAndInvalidPassword)

@@ -1,5 +1,5 @@
-const MyAccountPage = require('./myAccount.page');
-const Page = require('./page');
+const MyAccountPage = require('./myAccount.page')
+const Page = require('./page')
 
 /**
  * sub page containing specific selectors and methods for a specific page
@@ -21,13 +21,14 @@ class LoginPage extends Page {
      * e.g. to login using email and password
      */
     async login (email, password) {
-        await (await this.emailInputField).setValue(email);
-        await (await this.passwordInputField).setValue(password);
-        await (await this.submitButton).click();
+        await (await this.emailInputField).setValue(email)
+        await (await this.passwordInputField).setValue(password)
+        await (await this.submitButton).click()
     }
 
     async loginAndWait (email, password) {
         await this.login(email, password)
+        await browser.pause(5000)
         await MyAccountPage.myAccountMenuItem.waitForDisplayed({ timeout: 5000 })
     }
 
@@ -52,16 +53,16 @@ class LoginPage extends Page {
     /**
      * Click login button
      */
-     clickLoginButton() {
-        this.submitButton.waitForDisplayed()
-        this.submitButton.click()
+     async clickLoginButton() {
+        await this.submitButton.waitForDisplayed()
+        await this.submitButton.click()
     }
 
     /**
      * Get the text from the error message
      */
-     geterrorMessageText() {
-        this.errorMessage.waitForDisplayed()
+     async getErrorMessageText () {
+        await this.errorMessage.waitForDisplayed()
         return this.errorMessage.getText()
     }
 
@@ -69,8 +70,8 @@ class LoginPage extends Page {
      * overwrite specifc options to adapt it to page object
      */
     open () {
-        return super.open('login');
+        return super.open('login')
     }
 }
 
-module.exports = new LoginPage();
+module.exports = new LoginPage()
