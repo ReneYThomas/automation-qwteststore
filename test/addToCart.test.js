@@ -90,5 +90,4 @@ describe('Add Item to Cart', function () {
             assert.equal(cartItemsCountBeforeLogout, cartItemsCountAfterSignIn)      
         })
     })
-    
 })

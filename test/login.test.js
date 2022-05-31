@@ -61,5 +61,4 @@ describe("Login Page", function () {
             assert.equal(await LoginPage.passwordValidationError2.getText(), data.errorMessages.passwordValidationError)
         })
     })
-    
 })
