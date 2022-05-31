@@ -1,8 +1,5 @@
-const Page = require('./page');
+const Page = require('./page')
 
-/**
- * sub page containing specific selectors and methods for a specific page
- */
 class HomePage extends Page {
     /**
      * define selectors using getter methods
@@ -29,8 +26,8 @@ class HomePage extends Page {
      * overwrite specifc options to adapt it to page object
      */
     open () {
-        return super.open('');
+        return super.open('')
     }
 }
 
-module.exports = new HomePage();
+module.exports = new HomePage()

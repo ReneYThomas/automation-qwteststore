@@ -4,7 +4,7 @@
   "description": "This is me learning about webdriverio",
   "main": "index.js",
   "scripts": {
-    "test": "npx wdio wdio.conf.js"
+    "test": "npx wdio wdio.conf.js --spec"
   },
   "author": "Rene Thomas",
   "license": "ISC",
