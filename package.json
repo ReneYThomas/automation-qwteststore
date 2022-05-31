@@ -4,7 +4,9 @@
   "description": "This is me learning about webdriverio",
   "main": "index.js",
   "scripts": {
-    "test": "npx wdio wdio.conf.js --spec"
+    "test": "npx wdio wdio.conf.js --spec",
+    "test:dev": "ENV=dev npm run test",
+    "test:prod": "ENV=prod npm run test"
   },
   "author": "Rene Thomas",
   "license": "ISC",

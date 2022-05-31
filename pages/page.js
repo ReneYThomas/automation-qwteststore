@@ -33,6 +33,6 @@ module.exports = class Page {
     * @param path path of the sub page (e.g. /path/to/page.html)
     */
     open (path) {
-        return browser.url(`https://qw-test-store-prod.netlify.app/${path}`)
+        return browser.url(`${browser.options.baseUrl}/${path}`)
     }
 }
